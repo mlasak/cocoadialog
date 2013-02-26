@@ -3,6 +3,7 @@
  * I think they got this from an old version of Growl (growl.info).
  */
 @interface KABubbleWindowView : NSView {
+	bool _clickd;
 	NSImage *_icon;
 	NSString *_title;
 	NSAttributedString *_text;

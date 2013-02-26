@@ -51,6 +51,7 @@ void KABubbleShadeInterpolate( void *info, float const *inData, float *outData )
 	_lightColor = nil;
 	_textColor = nil;
 	_borderColor = nil;
+	_clickd = false;
 
 	[super dealloc];
 }
@@ -234,6 +235,15 @@ void KABubbleShadeInterpolate( void *info, float const *inData, float *outData )
 #pragma mark -
 
 - (void) mouseUp:(NSEvent *) event {
+	if (!_clickd) {
+		_clickd=true;
+		NSFileHandle *fh = [NSFileHandle fileHandleWithStandardOutput];
+		NSString *output = [NSString stringWithFormat:@"CLICKED"]; 
+		if (fh) {
+			[fh writeData:[output dataUsingEncoding:NSUTF8StringEncoding]];
+		}
+	}
+	
 	if( _target && _action && [_target respondsToSelector:_action] )
 		[_target performSelector:_action withObject:self];
 }
